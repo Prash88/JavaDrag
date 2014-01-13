@@ -1,0 +1,91 @@
+.area_toolbar{
+	display:none;
+}
+
+.container{
+  margin-left: 50px;
+  width: inherit;
+}
+
+#line_number{
+  background: #eee;
+  border-right: none;
+}
+
+#editor{
+  border-color: #666;
+}
+
+#result{
+  border: 0px;
+}
+
+#__ID__{
+  display:none;
+}
+
+#editor-container{
+  float: left;
+  width: 750px;
+}
+
+#right{
+  padding-left: 1em;
+  float: left;
+}
+
+#console{
+  font: 1em/1.5 'andale mono','lucida console',monospace;
+  background: #444;
+  color: white;
+  padding: 10px;
+  width: 300px;
+  min-height: 5em;
+  margin-top: 1em;
+}
+
+#console pre{
+  margin: 0px;
+  white-space: none;
+}
+
+#stdin{
+  width: 320px;
+  background: #444;
+  border: 0px;
+  color: white;
+  font: 1em/1.5 'andale mono','lucida console',monospace;
+}
+
+#stdin:before{
+  content: "> ";
+}
+
+.line-error, .icon{
+  padding-right: 2px;
+  margin-bottom: -2px;
+}
+
+#button-bar button{
+  
+}
+
+body, html, table, form, textarea{
+	font: 12px Monaco, sans-serif;
+}
+
+.editarea_popup, .editarea_popup table{
+	font-family: Monaco;
+	font-size: 10pt;
+}
+
+#method-list{
+  width: 320px;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+#method-list li:hover{
+  background: #eee;
+}
+
