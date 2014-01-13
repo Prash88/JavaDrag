@@ -1,0 +1,2 @@
+serviceClass: com.javadrag.client.GreetingService
+path: 3C87358C9505437A3059003EB4B3EBCB.gwt.rpc
