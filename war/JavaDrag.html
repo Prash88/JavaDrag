@@ -1,62 +1,81 @@
-<!doctype html>
-<!-- The DOCTYPE declaration above will set the     -->
-<!-- browser's rendering engine into                -->
-<!-- "Standards Mode". Replacing this declaration   -->
-<!-- with a "Quirks Mode" doctype is not supported. -->
-
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
 
-    <!--                                                               -->
-    <!-- Consider inlining CSS to reduce the number of requested files -->
-    <!--                                                               -->
-    <link type="text/css" rel="stylesheet" href="JavaDrag.css">
+    <title>JavaDrag - Prashanth</title>
+    <!--<script id="jquery" src="/classpath/jquery.js" type="text/javascript"/>-->
 
-    <!--                                           -->
-    <!-- Any title is fine                         -->
-    <!--                                           -->
-    <title>Web Application Starter Project</title>
-    
-    <!--                                           -->
-    <!-- This script loads your compiled module.   -->
-    <!-- If you add any GWT meta tags, they must   -->
-    <!-- be added before this line.                -->
-    <!--                                           -->
-    <script type="text/javascript" language="javascript" src="javadrag/javadrag.nocache.js"></script>
+        <link rel="stylesheet" href="style.css" />
+        <script language="Javascript" type="text/javascript" src="/javascripts/edit_area/edit_area_full.js"></script>
+        <script language="Javascript" type="text/javascript" src="/javascripts/jquery-1.4.2.min.js"></script>
+        <script language="Javascript" type="text/javascript" src="/javascripts/application.js"></script>
+        <script language="Javascript" type="text/javascript">
+                // initialisation
+                editAreaLoader.init({
+                        id: "editorpane"        // id of the textarea to transform                
+                        ,syntax: "java"        
+      					,min_width: 750
+      					,min_height: 480
+                        ,font_family: "Monaco"
+          				,language: "en"
+          				,start_highlight: true
+          		        ,allow_toggle: true
+          		        ,show_line_colors: true
+          		        ,word_wrap: false
+						,allow_toggle: false
+          				,toolbar: "search, go_to_line, fullscreen, |, undo, redo, |, select_font,|, change_smooth_selection, highlight, reset_highlight, word_wrap, |, help"
+                });
+     </script>
   </head>
-
-  <!--                                           -->
-  <!-- The body can have arbitrary html, or      -->
-  <!-- you can leave the body empty if you want  -->
-  <!-- to create a completely dynamic UI.        -->
-  <!--                                           -->
   <body>
-
-    <!-- OPTIONAL: include this if you want history support -->
-    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
-    
-    <!-- RECOMMENDED if your web app will not function without JavaScript enabled -->
-    <noscript>
-      <div style="width: 22em; position: absolute; left: 50%; margin-left: -11em; color: red; background-color: white; border: 1px solid red; padding: 4px; font-family: sans-serif">
-        Your web browser must have JavaScript enabled
-        in order for this application to display correctly.
-      </div>
-    </noscript>
-
-    <h1>Web Application Starter Project</h1>
-
-    <table align="center">
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Please enter your name:</td>        
-      </tr>
-      <tr>
-        <td id="nameFieldContainer"></td>
-        <td id="sendButtonContainer"></td>
-      </tr>
-      <tr>
-        <td colspan="2" style="color:red;" id="errorLabelContainer"></td>
-      </tr>
-    </table>
+    <div class="container">
+		<div id='logo'><img src='images/webide.png' /></div>
+    	<script type="text/javascript">
+      		function publishCode() {
+        	var id   = $("#__ID__").text();
+        	var code = editAreaLoader.getValue("editorpane");
+        	//console.log("ID = " + id  + ", CODE = " + code);
+        	$.post("/publish", { "id" : id, "code" : code });
+      	}
+      		var shouldPush = false;
+      		setInterval(function() {
+        	if (shouldPush) {
+          		publishCode();
+          		shouldPush = false;
+        	}
+      		}, 1000);
+      $(document).ready(function() {
+        withEditorPaneWindow(function(win) {
+          $(win.document).ready(function() {
+            $(win.document.getElementById("textarea")).keypress(function() {
+              //console.log("KEY PRESSED");
+              shouldPush = true;
+            });
+          });
+        });
+      });
+      $(document).ready(function() {
+        $("#compile").click(function() { publishCode(); });
+      });
+    </script>	
+		<div id='editor-container'>
+				<textarea id="editorpane"> </textarea>
+    	</div>
+    	<div id='right'>
+   			<div id='console-container'>
+       			<div id='button-bar'>
+            		<button id="compile">
+                		<img src="/images/lightbulb.png" class='icon'/>Compile
+                	</button>
+         		</div>
+           		<div id="console"/>
+      		</div>
+        	<br/>
+        	<strong>Method List</strong>
+        	<div id='method-list'><ul></ul></div>
+   		</div>
+    </div>
   </body>
 </html>
