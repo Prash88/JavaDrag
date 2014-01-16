@@ -1,3 +1,2 @@
 # Module javadrag
 # RPC service class, partial path of RPC policy file
-com.javadrag.client.GreetingService, 3C87358C9505437A3059003EB4B3EBCB.gwt.rpc
