@@ -15,13 +15,18 @@
      <param-name>debug</param-name>
      <param-value>true</param-value>
   	</init-param>
+  	<init-param>
+      <param-name>pollAndCometEnabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
 
   <servlet-mapping>
   	<servlet-name>dwr-invoker</servlet-name>
   	<url-pattern>/dwr/*</url-pattern>
   </servlet-mapping>
-  
+
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>JavaDrag.html</welcome-file>
