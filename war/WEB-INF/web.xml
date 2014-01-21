@@ -6,10 +6,7 @@
          xmlns="http://java.sun.com/xml/ns/javaee">
 
   <!-- Servlets -->
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.javadrag.server.GreetingServiceImpl</servlet-class>
-  </servlet>
+
   <servlet>
   	<display-name>DWR Servlet</display-name>
   	<servlet-name>dwr-invoker</servlet-name>  
@@ -20,10 +17,6 @@
   	</init-param>
   </servlet>
 
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/javadrag/greet</url-pattern>
-  </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>dwr-invoker</servlet-name>
   	<url-pattern>/dwr/*</url-pattern>
